@@ -1,0 +1,46 @@
+-- public.authorities definition
+
+-- Drop table
+
+-- DROP TABLE public.authorities;
+
+CREATE TABLE public.authorities (
+	id serial4 NOT NULL,
+	"role" varchar(50) NULL,
+	CONSTRAINT authorities_pkey PRIMARY KEY (id)
+);
+
+
+-- public.users definition
+
+-- Drop table
+
+-- DROP TABLE public.users;
+
+CREATE TABLE public.users (
+	id serial4 NOT NULL,
+	"name" varchar(50) NOT NULL,
+	last_name varchar(50) NULL,
+	email varchar(150) NOT NULL,
+	phone_number varchar(10) NULL,
+	dni varchar(50) NULL,
+	street varchar(150) NULL,
+	"password" varchar(250) NOT NULL,
+	sign_up_date date NOT NULL,
+	CONSTRAINT users_pkey PRIMARY KEY (id)
+);
+
+
+-- public.user_authorities definition
+
+-- Drop table
+
+-- DROP TABLE public.user_authorities;
+
+CREATE TABLE public.user_authorities (
+	user_id int4 NOT NULL,
+	authorities_id int4 NOT NULL,
+	CONSTRAINT user_authorities_pkey PRIMARY KEY (user_id, authorities_id),
+	CONSTRAINT user_authorities_authorities_id_fkey FOREIGN KEY (authorities_id) REFERENCES public.authorities(id),
+	CONSTRAINT user_authorities_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id)
+);
