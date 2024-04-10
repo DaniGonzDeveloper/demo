@@ -156,9 +156,9 @@ public class IntegrationTest {
         HttpHeaders header = new HttpHeaders();
         header.setContentType(MediaType.APPLICATION_JSON);
         UserViewRequest requestObject = new UserViewRequest();
-        requestObject.setName("test2");
-        requestObject.setPassword("test2");
-        requestObject.setEmail("test2@gmail.com");
+        requestObject.setName("test3");
+        requestObject.setPassword("test3");
+        requestObject.setEmail("test3@gmail.com");
         requestObject.setPhoneNumber("+34617846291");
 
         HttpEntity<UserViewRequest> requestHttpEntity = new HttpEntity<>(requestObject, header);
@@ -168,7 +168,7 @@ public class IntegrationTest {
 
         assertEquals(response.getStatusCode(), HttpStatus.OK);
         assertTrue(Objects.nonNull(response.getBody()));
-        assertEquals("test2", response.getBody().getUserName());
+        assertEquals("test3", response.getBody().getUserName());
     }
 
     @Test
@@ -184,12 +184,12 @@ public class IntegrationTest {
 
         HttpEntity<UserViewRequest> requestHttpEntity = new HttpEntity<>(requestObject, header);
 
-        ResponseEntity<ErrorResponse> response = restTemplate
-                .postForEntity("/signIn", requestHttpEntity, ErrorResponse.class);
+        ResponseEntity<TokenViewResponse> response = restTemplate
+                .postForEntity("/signIn", requestHttpEntity, TokenViewResponse.class);
 
-        assertEquals(response.getStatusCode(), HttpStatus.BAD_REQUEST);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
         assertTrue(Objects.nonNull(response.getBody()));
-        assertEquals(400, response.getBody().getStatusCode());
+        assertEquals("test2", response.getBody().getUserName());
     }
 
     @Test

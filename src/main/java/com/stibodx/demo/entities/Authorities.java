@@ -1,13 +1,17 @@
 package com.stibodx.demo.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Entity
 @Table(name = "authorities")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Authorities {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

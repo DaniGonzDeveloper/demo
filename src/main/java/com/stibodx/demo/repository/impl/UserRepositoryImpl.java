@@ -14,7 +14,7 @@ import java.util.Optional;
 @Repository
 public class UserRepositoryImpl implements UserRepository {
 
-    EntityManager entityManager;
+    private final EntityManager entityManager;
     @Autowired
     public UserRepositoryImpl(EntityManager entityManager) {
         this.entityManager = entityManager;

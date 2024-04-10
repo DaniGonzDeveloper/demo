@@ -76,6 +76,8 @@ public class UserController {
             @ApiResponse(responseCode = "400", description = "Bad request", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
             })
+    }, security = {
+            @SecurityRequirement(name = "basicAuth")
     })
     @GetMapping("/logIn")
     public TokenViewResponse logIn(@AuthenticationPrincipal UserAuth user) {

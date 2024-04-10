@@ -105,14 +105,14 @@ public class SecurityConfig {
 
 
 //    docker run --name postgres-db -e POSTGRES_PASSWORD=postgres-secret-test-key -p 5432:5432 -d cefd1c9e490c
-//sudo ssh -i /Users/dan/Downloads/test-api-dani-key.pem ec2-user@13.53.124.152
-//sftp -i /Users/dan/Downloads/test-api-dani-key.pem ec2-user@13.53.124.152
+//sudo ssh -i /Users/dan/Downloads/lightsail-instance-key.pem ec2-user@15.236.226.186
+//sftp -i /Users/dan/Downloads/lightsail-instance-key.pem ec2-user@15.236.226.186
 //put /ruta/local/archivo.txt /ruta/remota/
 
 
 //life-style-app-1.0-SNAPSHOT.jar
 
-//put /Users/dan/Downloads/springsecurity6-3.1.2/section9/life-style-app/target/life-style-app-1.0-SNAPSHOT-jar-with-dependencies.jar /home/ec2-user
+//put /Users/dan/IdeaProjects/demo/target/demo-0.0.1-SNAPSHOT.jar /home/ec2-user
 
 
 //    INSERT INTO public.user_authorities (user_id,authorities_id) VALUES
@@ -132,14 +132,14 @@ public class SecurityConfig {
 //        ('ROLE_normal');
 
 //Construir imagen especificando el lugar del contenedor y con un nombre específico
-//    sudo docker build --tag=life-style-app:latest . -f /home/ec2-user/java-container
+//    sudo docker build --tag=demo-app:latest . -f /home/ec2-user/java-container
 
 //Arrancar un contenedor en un puerto a partir de una imagen
 // sudo docker run -p8080:8080 life-style-app:latest
 
 //Postgresql a partir de la imagen de postgress con el port mapping especificando una base de datos con contraseña
 //Tambien se puede añadir un user name con -e POSTGRES_USER=miusuario y nombre de base de datos con -e POSTGRES_DB
-//sudo docker run --name postgres-db -e POSTGRES_PASSWORD=postgres-secret-test-key -p 5432:5432 -d cefd1c9e490c
+//sudo docker run --name postgres-db -e -e POSTGRES_USER=postgres POSTGRES_PASSWORD=postgres-secret-key -p 5432:5432 -d postgresql-db
 //Posible actualizacion con el docker compose:
 //version: '2'
 //        services:
@@ -154,4 +154,6 @@ public class SecurityConfig {
 //        - '5432:5432'
 
 // ejecutar imagen con variables de entorno
-//    sudo docker run -e JWT_KEY=jygEQeXHuPq2VdbyYFNkANdudQ53YEr2 -p8080:8080 life-style-app:latest
+//    sudo docker run -e JWT_KEY=jygEQeXHuPq2VdbyYFNkANdudQ53YEr2 -p8080:8080 demo-app:latest
+
+//java -jar demo-app.jar --spring.config.location=archivo.properties

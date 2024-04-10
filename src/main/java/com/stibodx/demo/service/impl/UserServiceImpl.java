@@ -17,6 +17,7 @@ import org.springframework.util.ObjectUtils;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -44,8 +45,10 @@ public class UserServiceImpl implements UserService {
                 throw new UserAlredyExistsException("user name, dni or email is alredy in use for another user");
             }
 
-            authorities = authsDto.stream().map(roleId -> authorizationRepository.findById(roleId)
-                    .orElseThrow(() -> new AuthNoFoundException("The roleId: " + roleId + " was not found"))).toList();
+            authorities = authsDto.stream()
+                    .map(roleId -> authorizationRepository.findById(roleId).orElse(null))
+                    .filter(Objects::nonNull)
+                    .toList();
             if (ObjectUtils.isEmpty(authorities)) {
                 authorities = Collections.singletonList(authorizationRepository.findById(ROLE_NORMAL_ID)
                         .orElseThrow(() -> new AuthNoFoundException("The roleId: " + ROLE_NORMAL_ID + " was not found")));

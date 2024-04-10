@@ -114,20 +114,20 @@
 
 	<build>
 		<plugins>
-			<!-- Configuración del plugin de compilación de Maven -->
+			<!-- Maven Compiler Plugin Configuration -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
 				<configuration>
-					<!-- Habilita la anotación de procesamiento de MapStruct -->
+					<!-- Enable MapStruct annotation processing -->
 					<annotationProcessorPaths>
 						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
 							<version>1.18.30</version>
 						</path>
-						<!-- Incluye la ruta de la dependencia de MapStruct -->
+						<!-- Include MapStruct annotation processor dependency -->
 						<path>
 							<groupId>org.mapstruct</groupId>
 							<artifactId>mapstruct-processor</artifactId>
@@ -136,7 +136,25 @@
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
+
+			<!-- Spring Boot Maven Plugin Configuration -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>2.6.3</version> <!-- Replace with the latest version -->
+				<configuration>
+					<mainClass>com.stibodx.demo.DemoApplication</mainClass>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
+
 
 </project>

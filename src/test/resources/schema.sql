@@ -1,3 +1,5 @@
+DROP SCHEMA IF EXISTS "db" CASCADE;
+
 CREATE SCHEMA "db";
 USE "db";
 
