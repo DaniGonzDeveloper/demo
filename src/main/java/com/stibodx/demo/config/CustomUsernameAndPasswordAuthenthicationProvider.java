@@ -34,7 +34,7 @@ public class CustomUsernameAndPasswordAuthenthicationProvider implements Authent
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        User user = this.userService.findByNameNoRoles(authentication.getName());
+        User user = this.userService.findByNameNoRoles(authentication.getName().toLowerCase());
         if (Objects.isNull(user)) {
             throw new BadCredentialsException("User details not found for user: " + authentication.getName());
         } else if (passwordEncoder.matches(authentication.getCredentials().toString(), user.getPassword())) {

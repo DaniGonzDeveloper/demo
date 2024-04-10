@@ -110,7 +110,7 @@ public class UserController {
                                           @RequestParam(name = "userName") String userName) {
         LogInfo logInfo = new LogInfo(this.getClass(), user.getUsername());
         logInfo.generateInfoLog("New get userByName request and looking for: ", userName);
-        UserViewResponse userViewResponse = userMapper.userEntityToDto(userService.findByName(userName, user.getAuthoritiesIds(), logInfo));
+        UserViewResponse userViewResponse = userMapper.userEntityToDto(userService.findByName(userName.toLowerCase(), user.getAuthoritiesIds(), logInfo));
         logInfo.generateInfoLog("getUserName request ended with response: ", userViewResponse.toString());
         return userViewResponse;
     }
@@ -136,7 +136,7 @@ public class UserController {
                                               @RequestParam(name = "userName") String userName) {
         LogInfo logInfo = new LogInfo(this.getClass(), user.getUsername());
         logInfo.generateInfoLog("New getUserByNameLike request and looking for a user like: ", userName);
-        UserViewResponse userViewResponse = userMapper.userEntityToDto(userService.findByNameLike(userName, user.getAuthoritiesIds(), logInfo));
+        UserViewResponse userViewResponse = userMapper.userEntityToDto(userService.findByNameLike(userName.toLowerCase(), user.getAuthoritiesIds(), logInfo));
         logInfo.generateInfoLog("getUserByNameLike request ended with response: ", userViewResponse.toString());
         return userViewResponse;
     }
